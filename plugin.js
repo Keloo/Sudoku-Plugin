@@ -62,7 +62,11 @@
         setInputs: function() {
             for (var i=1; i<=9; i++) {
                 for (var j=1; j<=9; j++) {
-                    this.element.find('#'+i+j).val(this.inputs[i][j]);
+                    if (this.inputs[i][j]) {
+                        this.element.find('#'+i+j).val(this.inputs[i][j]);
+                    } else {
+                        this.element.find('#'+i+j).val('');
+                    }
                 }
             }
         },
@@ -129,7 +133,35 @@
             while ((this.x <= 9) && (this.y <= 9)) {
                 this.solveInput();
             }
+            this.setInputs();
+        },
 
+        generatePuzzle: function(options) {
+            var firstValue = Math.round(Math.random()*8+1);
+
+            this.inputs = [];
+            for (var i=1; i<=9; i++) {
+                this.inputs[i] = [];
+                for (var j=1; j<=9; j++){
+                    this.inputs[i][j] = 0;
+                }
+            }
+            for (i=1; i<=1000; i++) {
+                this.x = Math.round(Math.random()*8+1);
+                this.y = Math.round(Math.random()*8+1);
+                if (this.checkInput(firstValue)) {
+                    this.inputs[this.x][this.y] = firstValue;
+                }
+            }
+            this.setInputs();
+            this.solvePuzzle();
+            for (i=1; i<=options.level*10; i++) {
+                do {
+                    this.x = Math.round(Math.random()*8+1);
+                    this.y = Math.round(Math.random()*8+1);
+                } while (!this.inputs[this.x][this.y]);
+                this.inputs[this.x][this.y] = 0;
+            }
             this.setInputs();
         }
     }
