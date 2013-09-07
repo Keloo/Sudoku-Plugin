@@ -62,10 +62,11 @@
         setInputs: function() {
             for (var i=1; i<=9; i++) {
                 for (var j=1; j<=9; j++) {
+                    input = this.element.find('#'+i+j);
                     if (this.inputs[i][j]) {
-                        this.element.find('#'+i+j).val(this.inputs[i][j]);
+                        input.val(this.inputs[i][j]);
                     } else {
-                        this.element.find('#'+i+j).val('');
+                        input.val('');
                     }
                 }
             }
