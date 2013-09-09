@@ -21,7 +21,8 @@
                         type:"text",
                         id: i +''+ j,
                         class: "sudokuInput",
-                        maxLength: "1"
+                        maxLength: "1",
+                        onkeyup: "$('.sudokuArea').data().plugin_sudokuSolver.onChangeInput(this)"
                     });
                     if ((i % 3) == 1) {
                         inputElement.css("margin-top", "10px");
@@ -35,10 +36,36 @@
             }
         },
 
+        onChangeInput: function(element) {
+            var isWithoutErrors = true;
+            element.value = element.value.replace(/[^0-9\.]/g,'');
+            this.inputs = this.getInputs();
+
+            for (var i=1; i<=9; i++) {
+                for (var j=1; j<=9; j++) {
+                    this.x = i;
+                    this.y = j;
+                    var input = $('#'+i+j);
+                    if (!this.checkInput(input.val()) && (this.inputs[i][j])) {
+                        input.css("color", "red");
+                        isWithoutErrors = false;
+                    } else {
+                        input.css("color", "black");
+                    }
+                }
+            }
+            if (!isWithoutErrors) {
+                $('.btnSolve').attr('disabled', true);
+            } else {
+                $('.btnSolve').attr('disabled', false);
+            }
+        },
+
         clearInputs: function() {
             this.element.children('input').each(function(){
                 this.value = '';
             });
+            $('.btnSolve').attr('disabled', false);
         },
 
         getInputs: function() {
@@ -77,13 +104,14 @@
                 cornerY = Math.floor((this.y - 1) / 3)*3 + 1;
 
             for (var i=1; i<=9; i++) {
-                if ((this.inputs[this.x][i] == val) || (this.inputs[i][this.y] == val)) {
+                if ((this.inputs[this.x][i] == val && i != this.y) ||
+                    (this.inputs[i][this.y] == val && i != this.x)) {
                     return false;
                 }
             }
             for (i=cornerX; i<=cornerX+2; i++) {
                 for (var j=cornerY; j<=cornerY+2; j++) {
-                    if (this.inputs[i][j] == val) {
+                    if (this.inputs[i][j] == val && (i != this.x || j != this.y)) {
                         return false;
                     }
                 }
