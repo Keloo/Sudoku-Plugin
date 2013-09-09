@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sudoku Solver</title>
+    <style>
+        .sudokuInput {
+            padding: 5px;
+            padding-left: 13px;
+            margin: 3px;
+            font-size: 20px;
+            width: 20px;
+            font-family: Arial Rounded MT Bold;
+        }
+    </style>
+</head>
+<body>
+
+    <center>
+        <div class="sudokuArea"></div>
+
+        <input type="button" name="Solve" value="Solve" class="btnSolve" />
+        <input type="button" name="Clear" value="Clear" class="btnClear" />
+        <br />
+        Level:
+        <select id="puzzleLevel">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+        </select>
+        <input type="button" name="Generate" value="Generate" class="btnGenerate" />
+    </center>
+
+    <!-- Scripts at the end -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src='plugin.js'></script>
+
+    <script type="text/javascript">
+        $('.sudokuArea').sudokuSolver({});
+
+        $('.btnClear').click(function(){
+            $('.sudokuArea').data().plugin_sudokuSolver.clearInputs()
+        });
+
+        $('.btnSolve').click(function(){
+            $('.sudokuArea').data().plugin_sudokuSolver.solvePuzzle()
+        });
+
+        $('.btnGenerate').click(function(){
+            $('.sudokuArea').data().plugin_sudokuSolver.generatePuzzle({
+                "level": $("#puzzleLevel").val()
+            })
+        });
+    </script>
+
+</body>
+</html>
