@@ -92,6 +92,30 @@
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
+          
+    <!-- Scripts at the end -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src='plugin.js'></script>
+
+    <script type="text/javascript">
+        $('.sudokuArea').sudokuSolver({});
+
+        $('.btnClear').click(function(){
+            $('.sudokuArea').data().plugin_sudokuSolver.clearInputs()
+        });
+
+        $('.btnSolve').click(function(){
+            $('.sudokuArea').data().plugin_sudokuSolver.solvePuzzle()
+        });
+
+        $('.btnGenerate').click(function(){
+            $('.sudokuArea').data().plugin_sudokuSolver.generatePuzzle({
+                "level": $("#puzzleLevel").val()
+            })
+        });
+    </script>
+    
+    
 
   </body>
 </html>
