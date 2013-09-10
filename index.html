@@ -1,60 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>Sudoku Solver</title>
-    <style>
-        .sudokuInput {
-            padding: 5px;
-            padding-left: 13px;
-            margin: 3px;
-            font-size: 20px;
-            width: 20px;
-            font-family: Arial Rounded MT Bold;
-        }
-    </style>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Sudoku Plugin by Keloo</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <center>
-        <div class="sudokuArea"></div>
+  </head>
+  <body>
 
-        <input type="button" name="Solve" value="Solve" class="btnSolve" />
-        <input type="button" name="Clear" value="Clear" class="btnClear" />
-        <br />
-        Level:
-        <select id="puzzleLevel">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4" selected>4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-        </select>
-        <input type="button" name="Generate" value="Generate" class="btnGenerate" />
-    </center>
+      <header>
+        <h1>Sudoku Plugin</h1>
+        <p>A simple jQuery Sudoku Plugin (solver and generator)</p>
+      </header>
 
-    <!-- Scripts at the end -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src='plugin.js'></script>
+      <div id="banner">
+        <span id="logo"></span>
 
-    <script type="text/javascript">
-        $('.sudokuArea').sudokuSolver({});
+        <a href="https://github.com/Keloo/Sudoku-Plugin" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/Keloo/Sudoku-Plugin/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/Keloo/Sudoku-Plugin/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
 
-        $('.btnClear').click(function(){
-            $('.sudokuArea').data().plugin_sudokuSolver.clearInputs()
-        });
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h2>
+<a name="jquery-sudoku-plugin" class="anchor" href="#jquery-sudoku-plugin"><span class="octicon octicon-link"></span></a>jQuery Sudoku Plugin</h2>
 
-        $('.btnSolve').click(function(){
-            $('.sudokuArea').data().plugin_sudokuSolver.solvePuzzle()
-        });
+<ol>
+<li>Solving any puzzle</li>
+<li>Generating puzzles of any difficulty </li>
+</ol><p>Here is the demo: <a href="http://keloo.github.io/Sudoku-Plugin/">Click</a></p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/Keloo">Keloo</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-43909662-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
 
-        $('.btnGenerate').click(function(){
-            $('.sudokuArea').data().plugin_sudokuSolver.generatePuzzle({
-                "level": $("#puzzleLevel").val()
-            })
-        });
-    </script>
-
-</body>
+  </body>
 </html>
